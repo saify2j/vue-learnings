@@ -1,31 +1,31 @@
 <template>
     <div>
         <h3>{{ title }}</h3>
-        <button @click="changeTitle"> Change Title</button>
+        <div v-for="todo in todos" :key="todo.id">
+            <h1>{{ todo.title }}</h1>
+            <p>{{ todo.completed }}</p>
+        </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name:'Blogs',
     data(){
         return {
-            title: 'Dragonball Z'
+            todos:[],
+            title: 'TO DO LIST'
         }
     },
     methods:{
-        changeTitle(){
-            this.title = 'Naruto'
-        }
     },
-    beforeCreate(){
-        alert('hello before created')
-    },
+    
     created(){
-        alert('hello after created')
+        axios.get('https://jsonplaceholder.typicode.com/todos/').then(response=>{
+            this.todos= response.data
+        })
     },
-    beforeUpdate(){
-        alert('before update')
-    }
+
 }
 </script>
 /* eslint-disable */ 

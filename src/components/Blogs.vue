@@ -5,6 +5,11 @@
             <h1>{{ todo.title }}</h1>
             <p>{{ todo.completed }}</p>
         </div>
+        <button @click="say()"> Say</button>
+        <div id="something">
+
+        </div>
+        <button @click="doSomething()">DO Something</button>
     </div>
 </template>
 <script>
@@ -18,6 +23,13 @@ export default {
         }
     },
     methods:{
+        say: function () {
+            alert("hello")
+        },
+        doSomething: function(){
+            let div = document.getElementById('something')
+            div.innerHTML =`<p>I did Something</p>`
+        }
     },
     
     created(){
